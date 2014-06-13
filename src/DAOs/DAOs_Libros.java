@@ -1,6 +1,7 @@
 package DAOs;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -19,19 +20,29 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// creo la tabla
-	db.execSQL("CREATE TABLE libros(id INTEGER,nombre TEXT)");
+	db.execSQL("CREATE TABLE libros(id INTEGER,nombre TEXT,autor TEXT)");
 		
 	}
-	//hshshshshhshshsh
-
 	//nmetodo actualizar base
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		
 		db.execSQL("DROP TABLE IF EXIST libros");
-		db.execSQL("CREATE TABLE libros(id INTEGER,nombre TEXT)");
+		db.execSQL("CREATE TABLE libros(id INTEGER,nombre TEXT,autor TEXT)");
 			
 	}
 	
-	//public void insertarDatos()
+	public void insertarDatos(Libro oLibro){
+	// abro base de datos
+		SQLiteDatabase BaseDatos = getWritableDatabase();
+		
+		BaseDatos.execSQL("INSERT INTO libros (cantidadHojas,nombre,autor) VALUES ("+oLibro.getCantidadHojas()+","+oLibro.getNombre()+","+oLibro.getAutor()+")");
+	
+		
+	
+		
+		
+		
+		
+	}
 }
