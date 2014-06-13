@@ -1,7 +1,9 @@
 package DAOs;
 
+import java.util.ArrayList;
+
 import android.content.Context;
-//import android.database.Cursor;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -41,4 +43,24 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 		BaseDatos.close();		
 		
 	}
+	
+	public ArrayList<Libro> RecuperarDatos(){
+		//creo base de datos
+		SQLiteDatabase basedatos =getWritableDatabase();
+		//Creo string que almacena instruccion sql
+		String SQL ="SELECT FROM * libros";
+		
+		Cursor cursor =basedatos.rawQuery(SQL, null);
+		// creo arreglo(libros) con objetos del tipo Libro y lo instancio
+		ArrayList<Libro> libros = new ArrayList<Libro>();
+			
+		
+		
+		
+		
+		
+		return libros;
+	}
+	
+	
 }
