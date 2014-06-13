@@ -9,7 +9,17 @@ public class Libro {
 	boolean activo;
 	
 	
-
+  public void setActivo(boolean Activo){
+	  this.activo=Activo;
+  }	
+  
+  
+  public String getActivo(){
+	
+	  if (activo) return "1";
+	  else return "0";
+ 
+  }
 
 	public Libro()
 	{
@@ -25,8 +35,8 @@ public class Libro {
 	}
 
 
-	public void setCantidadHojas(int cantidadHojas) {
-		this.cantidadHojas = cantidadHojas;
+	public void setCantidadHojas(int CantidadHojas) {
+		this.cantidadHojas = CantidadHojas;
 	}
 
 
@@ -35,8 +45,8 @@ public class Libro {
 	}
 
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(String Nombre) {
+		this.nombre = Nombre;
 	}
 
 
@@ -45,8 +55,8 @@ public class Libro {
 	}
 
 
-	public void setAutor(String autor) {
-		this.autor = autor;
+	public void setAutor(String Autor) {
+		this.autor = Autor;
 	}
 
 
@@ -55,8 +65,8 @@ public class Libro {
 	}
 
 
-	public void setPrecio(int precio) {
-		this.precio = precio;
+	public void setPrecio(int Precio) {
+		this.precio = Precio;
 	}
 	
 	
