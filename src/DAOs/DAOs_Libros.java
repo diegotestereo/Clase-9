@@ -1,7 +1,7 @@
 package DAOs;
 
 import android.content.Context;
-import android.database.Cursor;
+//import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -35,14 +35,10 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 	public void insertarDatos(Libro oLibro){
 	// abro base de datos
 		SQLiteDatabase BaseDatos = getWritableDatabase();
-		
+		//inserto
 		BaseDatos.execSQL("INSERT INTO libros (cantidadHojas,nombre,autor) VALUES ("+oLibro.getCantidadHojas()+","+oLibro.getNombre()+","+oLibro.getAutor()+")");
-	
-		
-	
-		
-		
-		
+	// cierro bbdd
+		BaseDatos.close();		
 		
 	}
 }
