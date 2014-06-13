@@ -49,7 +49,7 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 		SQLiteDatabase basedatos =getWritableDatabase();
 		//Creo string que almacena instruccion sql
 		String SQL ="SELECT FROM * libros";
-		
+		//creo un cursor para seleccionar
 		Cursor cursor =basedatos.rawQuery(SQL, null);
 		// creo arreglo(libros) con objetos del tipo Libro y lo instancio
 		ArrayList<Libro> libros = new ArrayList<Libro>();
