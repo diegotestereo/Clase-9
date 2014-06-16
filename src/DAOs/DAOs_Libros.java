@@ -84,14 +84,27 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 		SQLiteDatabase basedatos=getWritableDatabase();
 		String SQL ="SELECT * FROM libros";
 		Cursor cursor = basedatos.rawQuery(SQL, null);
-		int  cantidad=cursor.getCount();
-		
-		
-		
-		
-		
+		int  cantidad=cursor.getCount();// cantidad de elementos	
+		cursor.close();
+		basedatos.close();	
 		return cantidad;
 		
+	}
+	
+	
+	public void borrarlibro(Libro oLibro){//ingreso con el nombre dle objetolibro uque quiero borrar
+		SQLiteDatabase basedatos=getWritableDatabase();
+		String SQL="DELETE FROM libros WHERE nombre='"+oLibro.getNombre()+"'";
+		basedatos.execSQL(SQL);
+		
+		
+	}
+	
+	public void actualizarLibro(Libro olibro)
+	{
+		 SQLiteDatabase baseDatos = getWritableDatabase();
+		 baseDatos.execSQL("UPDATE libros set cantidadhojas ="+olibro.getCantidadHojas()+" where nombre = '"+olibro.getNombre()+"';" );
+		 baseDatos.close(); 
 	}
 	
 }
