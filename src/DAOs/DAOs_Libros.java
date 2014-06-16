@@ -22,7 +22,7 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// creo la tabla
-	db.execSQL("CREATE TABLE libros(id INTEGER,nombre TEXT,autor TEXT)");
+	db.execSQL("CREATE TABLE libros(cantidadHojas INTEGER,nombre TEXT,autor TEXT)");
 		
 	}
 	//nmetodo actualizar base
@@ -30,7 +30,7 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		
 		db.execSQL("DROP TABLE IF EXIST libros");
-		db.execSQL("CREATE TABLE libros(id INTEGER,nombre TEXT,autor TEXT)");
+		db.execSQL("CREATE TABLE libros(cantidadHojas INTEGER,nombre TEXT,autor TEXT)");
 			
 	}
 	
@@ -48,19 +48,50 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 		//creo base de datos
 		SQLiteDatabase basedatos =getWritableDatabase();
 		//Creo string que almacena instruccion sql
-		String SQL ="SELECT FROM * libros";
+		String SQL ="SELECT * FROM libros";
 		//creo un cursor para seleccionar
 		Cursor cursor =basedatos.rawQuery(SQL, null);
 		// creo arreglo(libros) con objetos del tipo Libro y lo instancio
 		ArrayList<Libro> libros = new ArrayList<Libro>();
+		
+		while (cursor.moveToNext()){
+			/*cargo en el cursor todas las filas de la base 
+			 * de datos para luego recorrerlas
+			 * y cargarlas en cada objeto libro
+			 * de esta forma
+			 * 
+			 */
+			Libro oLibro=new Libro();
+			oLibro.setCantidadHojas(cursor.getInt(0));
+			oLibro.setNombre(cursor.getString(1));
+			oLibro.setAutor(cursor.getString(2));
+			libros.add(oLibro);
 			
-		
-		
-		
-		
+		}
+		/*luego cierro la base de datos y el cursor 
+		 * lo antes posible
+		 * 
+		 */
+		cursor.close();
+		basedatos.close();		
 		
 		return libros;
 	}
 	
+	
+	public int recuperarCantidad(){
+			
+		SQLiteDatabase basedatos=getWritableDatabase();
+		String SQL ="SELECT * FROM libros";
+		Cursor cursor = basedatos.rawQuery(SQL, null);
+		int  cantidad=cursor.getCount();
+		
+		
+		
+		
+		
+		return cantidad;
+		
+	}
 	
 }
