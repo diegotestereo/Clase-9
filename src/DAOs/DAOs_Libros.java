@@ -39,7 +39,7 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 		SQLiteDatabase BaseDatos = getWritableDatabase();
 		//inserto
 		BaseDatos.execSQL("INSERT INTO libros (cantidadHojas,nombre,autor,precio) VALUES ("+
-		+oLibro.getCantidadHojas()+","+oLibro.getNombre()+","+oLibro.getAutor()+","+oLibro.getPrecio() +")");
+		+oLibro.getCantidadHojas()+",'"+oLibro.getNombre()+"','"+oLibro.getAutor()+"',"+oLibro.getPrecio() +")");
 	// cierro bbdd
 		BaseDatos.close();		
 		

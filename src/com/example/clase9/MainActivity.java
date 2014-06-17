@@ -3,7 +3,9 @@ package com.example.clase9;
 import DAOs.DAOs_Libros;
 import DAOs.Libro;
 import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -14,63 +16,64 @@ public class MainActivity extends Activity {
 	
 	EditText eTxt_Nombre,eTxt_Precio,eTxt_numhojas,eTxt_Autor ;
 	Button btn_agregar,btn_borrar,btn_atras,btn_adelante,btn_actualizar,btn_Limpiar ;
-	DAOs_Libros dao;
-	Libro oLibro ;
+
+	public SQLiteDatabase db;
+
+	DAOs_Libros dao ;
+	Libro oLibro;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        levantarXML();
-         botones();
-       
         
+        ///////instancio las clases DAO y Libro//////////////
+        dao =new DAOs_Libros(this, "BaseDatos", null, 1);
+        oLibro=new Libro() ;
+        /////////////////////////////////////////////////////
         
+    	 levantarXML();
+        botones();        
     }
 
 	public void cargarLibro() {
-		
 			
 		oLibro.setNombre(eTxt_Nombre.getText().toString());
 		oLibro.setAutor(eTxt_Autor.getText().toString());
-		oLibro.setCantidadHojas( Integer.parseInt(eTxt_numhojas.getText().toString()));
-		oLibro.setPrecio( Integer.parseInt(eTxt_Precio.getText().toString()));
-		
+		oLibro.setCantidadHojas(Integer.parseInt(eTxt_numhojas.getText().toString()));
+		oLibro.setPrecio(Integer.parseInt(eTxt_Precio.getText().toString()));
+		Log.v("cargarlibro","Cargo el objeto Libro");
 		
 	}
 
 	private void botones() {
-		
-		
-		
+	
+		db=dao.getWritableDatabase();
 		btn_agregar.setOnClickListener(new OnClickListener() {
-		
-			
-			
 			@Override
 			public void onClick(View v) {
+				Log.v("onclick","cargarlibro");
 				
-				 cargarLibro();
-			
+				cargarLibro();
+				Log.v("onclick","insertarDatos");
 				
-				dao.insertarDatos(oLibro);
+			dao.insertarDatos(oLibro);
+			db.close();
 			}
 		});
 		
 		
 		btn_Limpiar.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				eTxt_Autor.setText("");	
 				eTxt_Nombre.setText("");
 				eTxt_numhojas.setText("");
 				eTxt_Precio.setText("");
-				
-				
+			
 			}
 		});
-		
+		////// actualizar
 		btn_actualizar.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -78,7 +81,16 @@ public class MainActivity extends Activity {
 				dao.actualizarLibro(oLibro);
 			}
 		});
+		/// borrar libro
+		btn_borrar.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					cargarLibro();
+					dao.borrarlibro(oLibro);
+				}
+			});
 		
+
 	}
 
 	private void levantarXML() {
