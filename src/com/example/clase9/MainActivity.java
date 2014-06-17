@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
 	//declaro variables globales
 	
 	EditText eTxt_Nombre,eTxt_Precio,eTxt_numhojas,eTxt_Autor ;
-	Button btn_agregar,btn_borrar,btn_atras,btn_adelante,btn_actualizar,btn_Limpiar ;
+	Button btn_cantidad,btn_agregar,btn_borrar,btn_atras,btn_adelante,btn_actualizar,btn_Limpiar ;
 
 	public SQLiteDatabase db;
 
@@ -79,6 +79,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				 cargarLibro();
 				dao.actualizarLibro(oLibro);
+				db.close();
 			}
 		});
 		/// borrar libro
@@ -87,8 +88,19 @@ public class MainActivity extends Activity {
 				public void onClick(View v) {
 					cargarLibro();
 					dao.borrarlibro(oLibro);
+					db.close();
 				}
 			});
+		
+		btn_cantidad.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dao.recuperarCantidad();
+				db.close();
+				
+			}
+		});
 		
 
 	}
@@ -105,7 +117,7 @@ public class MainActivity extends Activity {
 		btn_borrar=(Button) findViewById(R.id.btn_Borrar);
 		btn_atras=(Button) findViewById(R.id.btn_Atras);
 		btn_Limpiar=(Button)findViewById(R.id.btn_Limpiar);
-		
+		btn_cantidad =(Button)findViewById(R.id.btn_cantidad);
 	}
 
 
