@@ -22,7 +22,7 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// creo la tabla
-	db.execSQL("CREATE TABLE libros(cantidadHojas INTEGER,nombre TEXT,autor TEXT)");
+	db.execSQL("CREATE TABLE libros(cantidadHojas INTEGER,nombre TEXT,autor TEXT,precio INTEGER)");
 		
 	}
 	//nmetodo actualizar base
@@ -30,7 +30,7 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		
 		db.execSQL("DROP TABLE IF EXIST libros");
-		db.execSQL("CREATE TABLE libros(cantidadHojas INTEGER,nombre TEXT,autor TEXT)");
+		db.execSQL("CREATE TABLE libros (cantidadHojas INTEGER,nombre TEXT,autor TEXT,precio INTEGER)");
 			
 	}
 	
@@ -38,7 +38,8 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 	// abro base de datos
 		SQLiteDatabase BaseDatos = getWritableDatabase();
 		//inserto
-		BaseDatos.execSQL("INSERT INTO libros (cantidadHojas,nombre,autor) VALUES ("+oLibro.getCantidadHojas()+","+oLibro.getNombre()+","+oLibro.getAutor()+")");
+		BaseDatos.execSQL("INSERT INTO libros (cantidadHojas,nombre,autor,precio) VALUES ("+
+		+oLibro.getCantidadHojas()+","+oLibro.getNombre()+","+oLibro.getAutor()+","+oLibro.getPrecio() +")");
 	// cierro bbdd
 		BaseDatos.close();		
 		
@@ -65,6 +66,7 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 			oLibro.setCantidadHojas(cursor.getInt(0));
 			oLibro.setNombre(cursor.getString(1));
 			oLibro.setAutor(cursor.getString(2));
+			oLibro.setPrecio(cursor.getInt(3));
 			libros.add(oLibro);
 			
 		}
@@ -103,7 +105,7 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 	public void actualizarLibro(Libro olibro)
 	{
 		 SQLiteDatabase baseDatos = getWritableDatabase();
-		 baseDatos.execSQL("UPDATE libros set cantidadhojas ="+olibro.getCantidadHojas()+" where nombre = '"+olibro.getNombre()+"';" );
+		 baseDatos.execSQL("UPDATE libros set precio ="+olibro.getPrecio()+" where nombre = '"+olibro.getNombre()+"';" );
 		 baseDatos.close(); 
 	}
 	
