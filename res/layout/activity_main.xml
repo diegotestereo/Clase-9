@@ -28,7 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10" />
+                android:ems="10"
+                android:text="a" />
 
         </LinearLayout>
 
@@ -48,7 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10" />
+                android:ems="10"
+                android:text="diego" />
 
         </LinearLayout>
 
@@ -68,7 +70,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10" />
+                android:ems="10"
+                android:text="1" />
 
         </LinearLayout>
 
@@ -88,7 +91,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10" >
+                android:ems="10"
+                android:text="2" >
 
                 <requestFocus />
             </EditText>
@@ -103,20 +107,21 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cantidad Libros: "
+                android:text="Cantidad: "
                 android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/editText1"
+            <TextView
+                android:id="@+id/txtV_Cantidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10" />
+                android:text="0"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btn_cantidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity=""
                 android:text="Cantidad" />
 
         </LinearLayout>
@@ -131,18 +136,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-
-            <Button
-                android:id="@+id/btn_Atras"
-                android:layout_width="158dp"
-                android:layout_height="wrap_content"
-                android:text="&lt;&lt;" />
-
-            <Button
-                android:id="@+id/btn_Adelante"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=">>" />
 
         </LinearLayout>
 
@@ -159,18 +152,17 @@
             android:text="Borrar Libro" />
 
         <Button
-            android:id="@+id/btn_Toast"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Toast" />
-
-        <Button
             android:id="@+id/btn_Limpiar"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Limpiar" />
+
+        <Button
+            android:id="@+id/btn_RecuperarLista"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recuperar Lista" />
 
     </LinearLayout>
 
