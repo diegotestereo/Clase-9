@@ -6,6 +6,7 @@ import DAOs.Libro;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,7 @@ public class MainActivity extends Activity {
 	
 	DAOs_Libros dao ;
 	Libro oLibro;
+	Intent intento;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class MainActivity extends Activity {
         ///////instancio las clases DAO y Libro//////////////
         dao =new DAOs_Libros(this, "BaseDatos", null, 1);
         oLibro=new Libro() ;
+        intento =new Intent(this,lista_libros.class);
+       
         /////////////////////////////////////////////////////
         levantarXML();
     	botones(); 
@@ -80,7 +84,17 @@ public class MainActivity extends Activity {
 
 	private void botones() {
 
-		
+		btn_RecuperarLista.setOnClickListener(new OnClickListener() {
+	
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "disparar activity", Toast.LENGTH_SHORT).show();
+				startActivity(intento);
+			}
+
+			
+		});
 		//db=dao.getWritableDatabase();
 		btn_agregar.setOnClickListener(new OnClickListener() {
 			@Override
@@ -153,7 +167,7 @@ public class MainActivity extends Activity {
 		btn_borrar=(Button) findViewById(R.id.btn_Borrar);
 		btn_Limpiar=(Button)findViewById(R.id.btn_Limpiar);
 		btn_cantidad =(Button)findViewById(R.id.btn_cantidad);
-		//btn_RecuperarLista=findViewById(R.id.);
+		btn_RecuperarLista=(Button) findViewById(R.id.btn_RecuperarLista);
 	}
 
 
