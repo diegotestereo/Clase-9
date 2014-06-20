@@ -23,8 +23,10 @@
             </intent-filter>
         </activity>
         <activity 
-            android:name="com.example.clase9.lista_libros"
-            android:label="Listado de Libros"></activity>
+            android:name="lista_libros"
+            android:label="Listado de Libros">
+            
+        </activity>
     </application>
 
 </manifest>

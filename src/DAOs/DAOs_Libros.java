@@ -81,6 +81,37 @@ public class DAOs_Libros extends SQLiteOpenHelper {
 		return libros;
 	}
 	
+	public ArrayList<String> RecuperarNombresLibros(){
+		//creo base de datos
+		SQLiteDatabase basedatos =getWritableDatabase();
+		//Creo string que almacena instruccion sql
+		String SQL ="SELECT * FROM libros";
+		//creo un cursor para seleccionar
+		Cursor cursor =basedatos.rawQuery(SQL, null);
+		// creo arreglo(libros) con objetos del tipo Libro y lo instancio
+		ArrayList<String> libros = new ArrayList<String>();
+		
+		while (cursor.moveToNext()){
+			/*cargo en el cursor todas las filas de la base 
+			 * de datos para luego recorrerlas
+			 * y cargarlas en cada objeto libro
+			 * de esta forma
+			 * 
+			 */
+						
+			libros.add(cursor.getString(1));
+			
+			
+		}
+		/*luego cierro la base de datos y el cursor 
+		 * lo antes posible
+		 * 
+		 */
+		cursor.close();
+		basedatos.close();		
+		
+		return libros;
+	}
 	
 	public int recuperarCantidad(){
 			
